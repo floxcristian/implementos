@@ -18,8 +18,8 @@ export class HomePageComponent implements OnInit {
 
   goToProductDetail(): void {}
 
-  clickProduct(id: number) {
-    console.log('product');
-    console.log(id);
+  clickProduct(product: IProduct) {
+    console.log('product: ', product);
+    // console.log(id);
   }
 }

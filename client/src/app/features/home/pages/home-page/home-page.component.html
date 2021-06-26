@@ -1,1 +1,7 @@
-<div class="product-list"></div>
+<div class="product-list">
+  <app-product-card
+    *ngFor="let product of products"
+    (productClicked)="clickProduct(product)"
+    [product]="product"
+  ></app-product-card>
+</div>

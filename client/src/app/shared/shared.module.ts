@@ -16,6 +16,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { ClpCurrencyPipe } from './pipes/clp-currency/clp-currency.pipe';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AsideSliderComponent } from './layouts/aside-slider/aside-slider.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 const MODULES = [
   CommonModule,
@@ -32,13 +33,14 @@ const COMPONENTS = [
   FooterComponent,
   MainLayoutComponent,
   AuthLayoutComponent,
-  AsideSliderComponent
+  AsideSliderComponent,
+  ProductCardComponent
 ];
 
 const PIPES = [ClpCurrencyPipe];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...PIPES],
+  declarations: [...COMPONENTS, ...PIPES, ProductCardComponent],
   imports: [...MODULES],
   exports: [...MODULES, ...COMPONENTS, ...PIPES]
 })
