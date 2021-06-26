@@ -1,39 +1,41 @@
-// https://github.com/franksotogithub/ipc-prueba/blob/35476952ae79a3450e016d52048f8c3472db5a1a/src/main-theme.scss
-// https://github.com/topdev309/tipoapp/blob/d2a1ce7aca99bcc8b971e015884df2d96c388a61/src/theme/theme-variables.scss
-// Dependencias para crear un theme
-@import "~@angular/material/theming";
-// Colores
-@import "./_variables.scss";
-@import "./_palette.scss";
+// Herramientas que facilitan la creación de un custom palette:
+// + https://material.io/resources/color
+// + http://mcg.mbitson.com
 
-// Núcleo de material, necesario para usar funciones como 'mat-palette' y 'mat-light-theme'
-@include mat-core();
+@use '~@angular/material' as mat;
+@import './_palette.scss';
 
-$custom-primary: mat-palette($cz-primary);
-$custom-accent: mat-palette($mat-pink, A200, A100, A400);
-$custom-warn: mat-palette($cz-warn);
+@include mat.core();
 
-// Crea el objeto theme que consiste en la configuración individual para el color, topografía, etc.
-$custom-light-theme: mat-light-theme(
+// Creamos variables a partir de nuestra paleta de colores personalizados usando el método define-palette.
+$custom-primary: mat.define-palette($color-primary);
+$custom-accent: mat.define-palette($color-warning);
+// Colores adicionales a los propios de material
+$custom-success: mat.define-palette($color-success);
+$custom-danger: mat.define-palette($color-danger);
+
+// Hacemos la construcción de un light-theme usando el método define-light-theme.
+// En base al tipo de theme construido (light o dark), se escogerá un tono u otro.
+$custom-light-theme: mat.define-light-theme(
   (
     color: (
       primary: $custom-primary,
-      accent: $custom-accent,
-      warn: $custom-warn,
-    ),
+      accent: $custom-accent
+    )
   )
 );
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($custom-light-theme);
+// Hacemos disponibles los colores como atributos de los componentes de material (<button mat-button color="my-color">).
+.mat-success {
+  background-color: mat-color($custom-success, 500) !important;
+  color: mat-contrast($custom-success, 900) !important;
+}
 
-// Define a custom typography config that overrides the font-family as well as the
-// `headlines` and `body-1` levels.
-/*$custom-typography: mat-typography-config(
-  $font-family: 'Poppins, Helvetica, sans-serif',
-  $headline: mat-typography-level(20px, 24px, 700),
-  $body-1: mat-typography-level(12px, 20px, 500)
-);
-@include angular-material-typography($custom-typography);*/
+.mat-danger {
+  background-color: mat-color($custom-success, 500) !important;
+  color: mat-contrast($custom-success, 900) !important;
+}
+
+// Este mixin emite estilos para los más de 35 componentes de Angular Material, por lo que,
+// a menos que utilicemos todos los componentes, esto generará CSS innecesario.
+@include mat.all-component-themes($custom-light-theme);
