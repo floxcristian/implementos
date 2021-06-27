@@ -1,6 +1,6 @@
 <mat-card class="product-card">
-  <mat-card-header>
-    <mat-card-title>
+  <mat-card-header style="">
+    <mat-card-title style="border: 1px solid red; height: 7rem">
       {{ product.name | uppercase }}
     </mat-card-title>
     <mat-card-subtitle>
@@ -10,7 +10,7 @@
     </mat-card-subtitle>
   </mat-card-header>
   <div class="crop-image">
-    <img [src]="product.images[0]" alt="" />
+    <img [src]="product.images.image150" alt="" />
   </div>
   <mat-card-actions>
     <div style="display: flex; justify-content: space-between">

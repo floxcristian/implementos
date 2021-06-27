@@ -1,12 +1,12 @@
 const express = require('express');
-// const auth = require('./auth.route');
+const productRoute = require('./product.route');
 
 const app = express();
 
-// app.use('/auth', auth);
+app.use('/product', productRoute);
 
 app.get('/', async (req, res) => {
-    res.send('asdsad');
+  res.send('asdsad');
 });
 
 module.exports = app;

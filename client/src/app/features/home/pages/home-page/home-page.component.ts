@@ -8,12 +8,15 @@ import { ProductsService } from '@core/services/api/products/products.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  products: IProduct[] = [];
+  products: any = [];
 
   constructor(private readonly _productSrv: ProductsService) {}
 
   ngOnInit(): void {
-    this.products = this._productSrv.getAll();
+    this._productSrv.getAll().subscribe((data) => {
+      console.log('data: ', data);
+      this.products = data;
+    });
   }
 
   goToProductDetail(): void {}

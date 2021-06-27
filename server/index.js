@@ -4,7 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const _routes = require('./src/routes/v1');
 // Services
-const _mongoSrv = require('./src/lib/mongodb');
+const _mongoLib = require('./src/lib/mongodb');
+const { loadExcelData } = require('./src/services/internal.service');
+
 // Constants
 const { PORT } = require('./src/config');
 
@@ -17,5 +19,6 @@ app.use('/api/v1', _routes);
 app.listen(PORT, async () => {
   console.log('PORT: ', PORT);
   console.log(` [+] Server is running on ${PORT}.`);
-  await _mongoSrv.init();
+  await _mongoLib.init();
+  // await loadExcelData('PRODUCTOS.xlsx');
 });

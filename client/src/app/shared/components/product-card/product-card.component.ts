@@ -18,6 +18,6 @@ export class ProductCardComponent implements OnInit {
    * Añadir producto al carrito.
    */
   addToCart() {
-    this.clickProduct.emit(this.product.id);
+    this.clickProduct.emit(this.product._id);
   }
 }
