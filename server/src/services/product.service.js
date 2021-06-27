@@ -3,7 +3,28 @@
 const { ProductSchema } = require('./../models');
 
 const getAll = async () => {
-  const data = await ProductSchema.find().sort({ code: 1 }).skip(0).limit(10);
+  const category = null;
+  const pageSize = 10;
+  const pageNumber = 0;
+  // const data = await ProductSchema.find().sort({ code: 1 }).skip(0).limit(10);
+  const data = await ProductSchema.aggregate([
+    {
+      $facet: {
+        data: [
+          { $match: { $or: [{ null: category }, { category: category }] } },
+          { $skip: pageSize * pageNumber },
+          { $limit: pageSize }
+        ],
+        total: [{ $count: 'count' }]
+      }
+    },
+    {
+      $project: {
+        data: 1,
+        total: { $arrayElemAt: ['$total.count', 0] }
+      }
+    }
+  ]);
   /*const data = await ProductSchema.aggregate([
     {
       $group: {
@@ -26,9 +47,15 @@ const getAll = async () => {
       }
     }
   ]).exec();*/
-  return data;
+  console.log('response: ', data);
+  return { ...data[0], page: pageNumber + 1, pageSize };
+};
+
+const getById = async () => {
+  return { status: 'ALOHA..' };
 };
 
 module.exports = {
-  getAll
+  getAll,
+  getById
 };

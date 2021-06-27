@@ -2,16 +2,25 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <div class="header-row">
+        <div class="logo">
+          <span>Implementos S.A.</span>
+        </div>
+
         <nav>
           <a mat-button routerLink="/products" routerLinkActive="active">
             Productos
           </a>
         </nav>
         <div>
-          <button mat-button routerLink="/account/login" class="primary-bg-900">
+          <button
+            mat-raised-button
+            color="info"
+            routerLink="/account/login"
+            class="primary-bg-900"
+          >
             <mat-icon>perm_identity</mat-icon>
           </button>
-          <button mat-button class="primary-bg-900">
+          <button mat-raised-button color="success">
             <!-- <span class="material-icons-outlined"> shopping_bag </span> -->
             <mat-icon fontSet="material-icons-outlined"
               >shopping_basket</mat-icon
@@ -22,6 +31,7 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
+  <app-progress-indicator></app-progress-indicator>
 </header>
 
 <!--<span routerLink="">Material Starter</span>

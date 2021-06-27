@@ -8,21 +8,30 @@ import { ProductsService } from '@core/services/api/products/products.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  products: any = [];
+  products: IProduct[] = [];
+  total: number = 0;
+  pageSize: number = 10;
+  pageSizeOptions: number[] = [10, 25, 100];
+  loading: boolean = false;
 
   constructor(private readonly _productSrv: ProductsService) {}
 
   ngOnInit(): void {
-    this._productSrv.getAll().subscribe((data) => {
-      console.log('data: ', data);
-      this.products = data;
+    this.loading = true;
+    this._productSrv.getAll().subscribe((response) => {
+      console.log('data: ', response);
+      this.products = response.data;
+      this.total = response.total;
+      this.loading = false;
     });
   }
 
-  goToProductDetail(): void {}
-
-  clickProduct(product: IProduct) {
-    console.log('product: ', product);
+  goToProductDetail(product: IProduct) {
+    console.log('goToProductDetail: ', product);
     // console.log(id);
+  }
+
+  addToCart(data: any) {
+    console.log('addToCart: ', data);
   }
 }

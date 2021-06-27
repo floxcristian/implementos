@@ -2,11 +2,7 @@
 @import './theme/_reset.scss';
 @import './theme/_theme.scss';
 @import './theme/_palette.scss';
-
-/* You can add global styles to this file, and also import other style files */
-:root {
-  --green: #00d372;
-}
+@import './theme/_variables.scss';
 
 html {
   font-size: 62.5%;
@@ -25,7 +21,7 @@ body {
 }
 
 ::selection {
-  background: var(--green);
+  background: $green;
   color: #fff;
 }
 

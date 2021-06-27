@@ -32,10 +32,14 @@ $custom-light-theme: mat.define-light-theme(
 }
 
 .mat-danger {
-  background-color: mat-color($custom-success, 500) !important;
-  color: mat-contrast($custom-success, 900) !important;
+  background-color: mat-color($custom-danger, 500) !important;
+  color: mat-contrast($custom-danger, 900) !important;
 }
 
+.mat-info {
+  background-color: mat-color($color-basic, 500) !important;
+  color: mat-contrast($custom-danger, 900) !important;
+}
 // Este mixin emite estilos para los más de 35 componentes de Angular Material, por lo que,
 // a menos que utilicemos todos los componentes, esto generará CSS innecesario.
 @include mat.all-component-themes($custom-light-theme);

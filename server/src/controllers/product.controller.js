@@ -11,6 +11,13 @@ const getAll = async (req, res, next) => {
   }
 };
 
+const getById = async (req, res, next) => {
+  const { id } = req.query;
+  const data = await _productService.getById(id);
+  res.json(data);
+};
+
 module.exports = {
-  getAll
+  getAll,
+  getById
 };

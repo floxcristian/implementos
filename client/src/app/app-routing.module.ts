@@ -21,7 +21,10 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./features/home/home.module').then((m) => m.HomeModule)
+          //          import('./features/home/home.module').then((m) => m.HomeModule)
+          import('./features/products/products.module').then(
+            (m) => m.ProductsModule
+          )
       }
       /*{
         path: 'products',

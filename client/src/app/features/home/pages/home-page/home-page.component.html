@@ -1,7 +1,17 @@
-<div class="product-grid">
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<!--<div class="product-grid">
   <app-product-card
     *ngFor="let product of products"
-    (productClicked)="clickProduct(product)"
+    (_addedToCart)="addToCart(product)"
+    (_clickedProduct)="goToProductDetail(product)"
     [product]="product"
   ></app-product-card>
-</div>
+</div>-->
+
+<mat-paginator
+  [length]="total"
+  [pageSize]="10"
+  [pageSizeOptions]="pageSizeOptions"
+>
+</mat-paginator>

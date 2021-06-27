@@ -1,19 +1,43 @@
-<mat-card class="product-card">
-  <mat-card-header style="">
-    <mat-card-title style="border: 1px solid red; height: 7rem">
+<mat-card
+  class="product-card"
+  style="display: flex; flex-direction: column; flex-shrink: 0; width: 300px"
+  (click)="clickedProduct()"
+>
+  <mat-card-header style="display: flex; flex-direction: column; flex-grow: 4">
+    <mat-card-title
+      style="
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 4;
+      "
+    >
       {{ product.name | uppercase }}
     </mat-card-title>
-    <mat-card-subtitle>
+    <mat-card-subtitle
+      style="display: flex; flex-direction: column; flex-grow: 4"
+    >
       <!-- {{ product.price | currency: "CLP":"$" }} / -->
       {{ product.price | clpCurrency: 'CLP':'$' }} /
       {{ product.unitId | uppercase }}
     </mat-card-subtitle>
   </mat-card-header>
-  <div class="crop-image">
+  <div
+    class="crop-image"
+    style="display: flex; flex-direction: column; flex-grow: 4"
+  >
     <img [src]="product.images.image150" alt="" />
   </div>
-  <mat-card-actions>
-    <div style="display: flex; justify-content: space-between">
+  <mat-card-actions style="display: flex; flex-direction: column; flex-grow: 1">
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 4;
+      "
+    >
       <mat-button-toggle-group
         name="unitType"
         aria-label="Unit Type"
@@ -23,12 +47,19 @@
         <mat-button-toggle value="box">CAJA</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <div style="display: flex; justify-content: space-between">
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        display: flex;
+        flex-grow: 4;
+      "
+    >
       <button mat-raised-button>
         <mat-icon>favorite_border</mat-icon>
         <!-- <mat-icon fontSet="material-icons-outlined">bookmark_add</mat-icon> -->
       </button>
-      <button mat-raised-button color="primary" (click)="addToCart()">
+      <button mat-raised-button color="primary" (click)="addedToCart()">
         <!-- style="background-color: #00d372; color: white" -->
         AGREGAR AL CARRITO
       </button>

@@ -17,7 +17,6 @@ app.use(cors());
 app.use('/api/v1', _routes);
 
 app.listen(PORT, async () => {
-  console.log('PORT: ', PORT);
   console.log(` [+] Server is running on ${PORT}.`);
   await _mongoLib.init();
   // await loadExcelData('PRODUCTOS.xlsx');
