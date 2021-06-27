@@ -19,5 +19,5 @@ app.use('/api/v1', _routes);
 app.listen(PORT, async () => {
   console.log(` [+] Server is running on ${PORT}.`);
   await _mongoLib.init();
-  // await loadExcelData('PRODUCTOS.xlsx');
+  await loadExcelData('PRODUCTOS.xlsx');
 });

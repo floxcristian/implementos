@@ -22,6 +22,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -45,7 +47,9 @@ const MATERIAL_MODULES = [
   MatSnackBarModule,
   MatBadgeModule,
   MatButtonToggleModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatExpansionModule,
+  MatGridListModule
 ];
 
 @NgModule({

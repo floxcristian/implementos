@@ -4,27 +4,6 @@
 @import './theme/_palette.scss';
 @import './theme/_variables.scss';
 
-html {
-  font-size: 62.5%;
-}
-html,
-body {
-  height: 100%;
-  background-color: #edf1f7;
-}
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  display: flex;
-  flex-direction: column;
-}
-
-::selection {
-  background: $green;
-  color: #fff;
-}
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -41,4 +20,52 @@ mat-icon + span {
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
   line-height: 35px;
+}
+
+/***************************************
+* 1. General styles
+****************************************/
+html {
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #edf1f7;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: $font-color !important;
+}
+
+ul {
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+// material override
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+::selection {
+  background: $selection-color;
+  color: #fff;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  // padding: 0 15px !important;
 }

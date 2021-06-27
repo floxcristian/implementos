@@ -1,0 +1,75 @@
+.filter-sidebar {
+  display: flex;
+  flex-direction: row;
+}
+
+// ========================
+.left-sidebar-wrapper {
+  .filter-sidenav {
+    width: 100%;
+    .popular-products {
+      margin-top: 0;
+    }
+    .toggles-wrapper {
+      .toggles {
+        padding-right: 7px;
+      }
+      .popular-products {
+        padding-left: 0px;
+      }
+    }
+  }
+}
+
+.category-contant {
+  ul {
+    li {
+      display: block;
+      border-top: 1px solid #f3f3f3;
+      a {
+        padding-top: 13px;
+        padding-bottom: 13px !important;
+        margin: 0 24px;
+      }
+    }
+  }
+}
+
+.category-contant {
+  ul {
+    li {
+      width: 100%;
+      transition: 0.3s;
+    }
+  }
+}
+
+/***************************************
+*  Sidebar
+****************************************/
+$grey-light: #dddddd;
+$grey6: #e5e5e5;
+$font-color: #333333;
+$gray-lighter: #f6f6f6;
+$grey3: #c3c3c3;
+$theme-main: #ffa726;
+$white: #ffffff;
+$grey5: #848484;
+
+/***************************************
+*  Categories menu styles
+****************************************/
+$dark-font: #222222;
+$grey: #777777;
+.category-contant {
+  ul {
+    li {
+      a {
+        color: $grey;
+        padding-bottom: 10px;
+        display: block;
+        font-size: 15px;
+      }
+    }
+  }
+}

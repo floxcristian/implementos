@@ -5,6 +5,7 @@ const ProductSchema = mongoose.Schema(
     _id: mongoose.Schema.Types.ObjectId,
     code: {
       type: String,
+      unique: true,
       required: true,
       min: 6,
       max: 12,

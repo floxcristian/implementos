@@ -1,14 +1,15 @@
 'use strict';
 
-const { ProductSchema } = require('../models');
+const { ProductSchema, UenSchema } = require('../models');
 
 const { getCollectionsDataFromExcelFile } = require('./excel.service');
 
 const loadExcelData = async (path) => {
-  const collectionsData = getCollectionsDataFromExcelFile(path);
-  await ProductSchema.collection.insertMany(
-    collectionsData.productCollectionData
-  );
+  const { productCollectionData, UenCollectionData } =
+    getCollectionsDataFromExcelFile(path);
+
+  // await ProductSchema.collection.insertMany(productCollectionData);
+  // await UenSchema.collection.insertMany(UenCollectionData);
   console.log(` [+] MongoDB updated with Excel data registers.`);
 };
 

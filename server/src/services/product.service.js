@@ -2,19 +2,28 @@
 
 const { ProductSchema } = require('./../models');
 
-const getAll = async () => {
-  const category = null;
-  const pageSize = 10;
-  const pageNumber = 0;
-  // const data = await ProductSchema.find().sort({ code: 1 }).skip(0).limit(10);
+const getAll = async (queryParams) => {
+  const uen = queryParams.uen || null;
+  const category = +queryParams.category || null;
+  const line = +queryParams.line || null;
+  const pageSize = +queryParams.page_size || 10;
+  const page = +queryParams.page || 1;
+  const search = queryParams.search;
+  console.log('search: ', search);
+
+  const skip = (page - 1) * pageSize;
+  const matchCondition = getMatchCondition({ uen, category, line, search });
+
+  console.log('matchCondition: ', matchCondition);
+
+  console.log(queryParams);
+  console.log(matchCondition);
   const data = await ProductSchema.aggregate([
+    { $match: matchCondition },
+    { $sort: { price: 1 } },
     {
       $facet: {
-        data: [
-          { $match: { $or: [{ null: category }, { category: category }] } },
-          { $skip: pageSize * pageNumber },
-          { $limit: pageSize }
-        ],
+        data: [{ $skip: skip }, { $limit: pageSize }],
         total: [{ $count: 'count' }]
       }
     },
@@ -25,37 +34,41 @@ const getAll = async () => {
       }
     }
   ]);
-  /*const data = await ProductSchema.aggregate([
-    {
-      $group: {
-        _id: {
-          uen: '$uen',
-          category: '$category.description',
-          line: '$line.description'
-        },
-        products: {
-          $push: '$$ROOT'
-        }
-      }
-    },
-    {
-      $group: {
-        _id: '$id.uen',
-        categories: {
-          $addToSet: { category: '$_id.category', line: '$_id.line' }
-        }
-      }
-    }
-  ]).exec();*/
-  console.log('response: ', data);
-  return { ...data[0], page: pageNumber + 1, pageSize };
+  return { ...data[0], page: page, pageSize };
 };
 
-const getById = async () => {
+const getById = async (id) => {
   return { status: 'ALOHA..' };
+};
+
+const getByCode = async (code) => {
+  const data = await ProductSchema.find({ code: code });
+  return data[0];
+};
+
+const getMatchCondition = (matchFields) => {
+  const { uen, category, line, search } = matchFields;
+
+  const searchCondition = search
+    ? {
+        $or: [
+          { code: { $regex: `.*${search}.*`, $options: 'i' } },
+          { name: { $regex: `.*${search}.*`, $options: 'i' } },
+          { partNumber: { $regex: `.*${search}.*`, $options: 'i' } }
+        ]
+      }
+    : {};
+  // prettier-ignore
+  const specificFieldCondition =  uen ? { 'uen': uen }
+    : category ? { 'category.id': category }
+    : line ? { 'line.id': line }
+    : {};
+
+  return { $and: [searchCondition, specificFieldCondition] };
 };
 
 module.exports = {
   getAll,
-  getById
+  getById,
+  getByCode
 };

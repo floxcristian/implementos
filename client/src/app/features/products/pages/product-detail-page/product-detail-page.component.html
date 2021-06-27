@@ -1,1 +1,146 @@
-<p>product-detail-page works!</p>
+<div
+  *ngIf="product"
+  class="product-detail-page section-gap bg-white"
+  style="background: #fff; padding: 5rem 0"
+>
+  <div class="container">
+    <div
+      class="col-gap"
+      style="
+        flex-flow: row wrap;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center;
+        align-items: center;
+      "
+    >
+      <div style="flex: 1 1 90%; box-sizing: border-box; max-width: 90%">
+        <div
+          class="col-gap position-relative"
+          style="
+            flex-flow: row wrap;
+            box-sizing: border-box;
+            display: flex;
+            margin-left: -15px;
+            margin-right: -15px;
+          "
+        >
+          <!-- Image -->
+          <div
+            style="
+              flex: 1 1 50%;
+              box-sizing: border-box;
+              max-width: 50%;
+              padding-left: 1rem;
+              padding-right: 1rem;
+              margin-bottom: 1rem;
+              margin-top: 1rem;
+            "
+          >
+            <div>
+              <div>
+                <div class="product-detail-image-gallery pr-4">
+                  <div
+                    *ngIf="product.images"
+                    class="product-image-gallery-item"
+                  >
+                    <a
+                      id="{{ product.images.image450 }}_img"
+                      class="p-link border-active"
+                      href="javascript:void(0)"
+                    >
+                      <img [src]="product.images.image450" alt="" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="relative" *ngIf="mainImgPath"></div>
+            </div>
+          </div>
+          <!-- Detail -->
+          <div
+            style="
+              flex: 1 1 50%;
+              box-sizing: border-box;
+              max-width: 50%;
+              padding-left: 1rem;
+              padding-right: 1rem;
+              margin-bottom: 1rem;
+              margin-top: 1rem;
+            "
+          >
+            <div *ngIf="product" class="product-detail-content">
+              <a href="javascript:void(0)" [routerLink]="['/']"
+                >Volver a Productos</a
+              >
+              <h1>{{ product.name }}</h1>
+
+              <div class="product-detail-price">
+                <h4 class="accent-color" style="font-size: 1.5rem">
+                  {{ product.price | clpCurrency: 'CLP':'$' }}
+                </h4>
+              </div>
+              <ul class="no-style mb-4">
+                <li>
+                  <span class="font-medium">SKU </span>: {{ product.code }}
+                </li>
+                <li>
+                  <span class="font-medium">Estado </span>: {{ product.status }}
+                </li>
+                <li>
+                  <span class="font-medium">Marca </span>: {{ product.brand }} -
+                  {{ product.manufacturerType }}
+                </li>
+                <li>
+                  <span class="font-medium">Número de Parte </span>:
+                  {{ product.partNumber }}
+                </li>
+              </ul>
+              <div class="short-des">
+                <p>{{ product.description }}</p>
+              </div>
+              <div class="mb-3 select-group">
+                <ng-container *ngIf="type == 'men' || type == 'women'">
+                  <mat-form-field>
+                    <mat-select
+                      class="product-detail-select"
+                      placeholder="Color"
+                    >
+                      <ng-container *ngFor="let color of colorsArray">
+                        <mat-option
+                          class="product-detail-select"
+                          value="{{ color }}"
+                          >{{ color }}</mat-option
+                        >
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select placeholder="Size">
+                      <ng-container *ngFor="let size of sizeArray">
+                        <mat-option value="{{ size }}">{{ size }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                </ng-container>
+                <mat-form-field>
+                  <mat-select placeholder="Cantidad">
+                    <ng-container *ngFor="let quantity of quantityArray">
+                      <mat-option value="{{ quantity }}">{{
+                        quantity
+                      }}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div style="width: 100%">
+                <button mat-raised-button>AÑADIR A LA CESTA</button>
+                <button mat-raised-button color="success">COMPRAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

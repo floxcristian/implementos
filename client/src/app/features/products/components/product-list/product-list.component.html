@@ -1,15 +1,17 @@
 <div class="product-list">
-  <mat-card style="width: 100%">
+  <mat-card class="product-list__container">
     <mat-card-header>
-      <mat-card-title> Productos </mat-card-title>
+      <mat-card-title>
+        {{ getTitle() }}
+      </mat-card-title>
     </mat-card-header>
-    <mat-card-content
-      style="background-color: #f7f9fc; display: flex; flex-direction: column"
-    >
+    <mat-card-content class="product-list__container-content">
       <div class="product-grid" style="margin: 4rem 0">
         <app-product-card
           *ngFor="let product of products"
           [product]="product"
+          (_addedToCart)="addToCart(product)"
+          [routerLink]="['/detail', product.code]"
         ></app-product-card>
       </div>
     </mat-card-content>
@@ -18,6 +20,7 @@
         [length]="total"
         [pageSize]="10"
         [pageSizeOptions]="pageSizeOptions"
+        (page)="pageChange($event)"
       >
       </mat-paginator>
     </mat-card-actions>

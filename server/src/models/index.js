@@ -1,5 +1,6 @@
 'use strict';
 
 const { ProductSchema } = require('./product.model');
+const { UenSchema } = require('./uen.model');
 
-module.exports = { ProductSchema };
+module.exports = { ProductSchema, UenSchema };

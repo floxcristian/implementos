@@ -4,15 +4,9 @@
   (click)="clickedProduct()"
 >
   <mat-card-header style="display: flex; flex-direction: column; flex-grow: 4">
-    <mat-card-title
-      style="
-        border: 1px solid red;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 4;
-      "
-    >
+    <mat-card-title style="display: flex; flex-direction: column; flex-grow: 4">
       {{ product.name | uppercase }}
+      <h4>SKU: {{ product.code }}</h4>
     </mat-card-title>
     <mat-card-subtitle
       style="display: flex; flex-direction: column; flex-grow: 4"
@@ -29,24 +23,6 @@
     <img [src]="product.images.image150" alt="" />
   </div>
   <mat-card-actions style="display: flex; flex-direction: column; flex-grow: 1">
-    <div
-      style="
-        display: flex;
-        justify-content: space-between;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 4;
-      "
-    >
-      <mat-button-toggle-group
-        name="unitType"
-        aria-label="Unit Type"
-        style="line-height: 35px"
-      >
-        <mat-button-toggle value="kg">KG</mat-button-toggle>
-        <mat-button-toggle value="box">CAJA</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
     <div
       style="
         display: flex;

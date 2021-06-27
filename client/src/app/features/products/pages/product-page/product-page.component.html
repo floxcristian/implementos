@@ -1,9 +1,81 @@
-<!-- Filter Component -->
+<h1>{{ title }}</h1>
 
-<app-product-list
-  [products]="products"
-  [total]="total"
-  [pageSize]="pageSize"
-  [page]="page"
->
-</app-product-list>
+<div style="flex-flow: row wrap; box-sizing: border-box; display: flex">
+  <div style="flex: 1 1 100%">
+    <!-- SEARCH -->
+    <form
+      [formGroup]="searchForm"
+      novalidate
+      (ngSubmit)="onSubmit(searchForm.value.search)"
+    >
+      <mat-form-field class="x" style="width: 100%">
+        <input
+          matInput
+          type="text"
+          formControlName="search"
+          maxlength="25"
+          placeholder="Buscar producto por código, nombre o número de parte"
+        />
+        <button
+          type="button"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="cleanInput()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <!-- FILTER -->
+  <div
+    class="sidebar"
+    style="flex: 1 1 25%; box-sizing: border-box; max-width: 25%"
+  >
+    <!-- Top Filter Component -->
+    <div class="left-sidebar-wrapper sec-padding">
+      <div class="container">
+        <div class="filter-sidenav">
+          <div class="toggles-wrapper">
+            <div class="toggles">
+              <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <span>Secciones</span>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="category-contant" *ngIf="uens">
+                    <ul>
+                      <li *ngFor="let uen of uens">
+                        <a
+                          [routerLink]="['/']"
+                          [queryParams]="{ uen: uen.uen }"
+                          >{{ uen.uen }}</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product list -->
+  <app-product-list
+    style="flex: 1 1 75%; box-sizing: border-box; max-width: 75%"
+    [products]="products"
+    [total]="total"
+    [pageSize]="pageSize"
+    [page]="page"
+    [search]="search"
+    (_pageChanged)="changePage($event)"
+  >
+  </app-product-list>
+</div>

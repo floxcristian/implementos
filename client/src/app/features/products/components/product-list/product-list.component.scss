@@ -2,4 +2,12 @@
   display: flex;
   flex-flow: row wrap;
   width: 100%;
+  &__container {
+    width: 100%;
+  }
+  &__container-content {
+    background-color: #f7f9fc;
+    display: flex;
+    flex-direction: column;
+  }
 }
